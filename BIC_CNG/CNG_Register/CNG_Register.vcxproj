@@ -115,7 +115,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(ProjectDir)lib\win8\x64\bcrypt_provider.lib;$(ProjectDir)lib\win8\x64\cng_provider.lib;$(ProjectDir)lib\win8\x64\ncrypt_provider.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)lib\x64\bcrypt_provider.lib;$(ProjectDir)lib\x64\cng_provider.lib;$(ProjectDir)lib\x64\ncrypt_provider.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -176,7 +176,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(ProjectDir)lib\win8\x64\bcrypt_provider.lib;$(ProjectDir)lib\win8\x64\cng_provider.lib;$(ProjectDir)lib\win8\x64\ncrypt_provider.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)lib\x64\bcrypt_provider.lib;$(ProjectDir)lib\x64\cng_provider.lib;$(ProjectDir)lib\x64\ncrypt_provider.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
