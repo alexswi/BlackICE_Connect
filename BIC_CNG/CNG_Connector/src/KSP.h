@@ -561,6 +561,8 @@ Error_Writter(
 
 NTSTATUS AuthDisplay(HINSTANCE hinst, char** pin);
 
+int DisplayResourceNAMessageBox();
+
 //macro for list operation
 #define InitializeListHead(ListHead) (\
     (ListHead)->Flink = (ListHead)->Blink = (ListHead))

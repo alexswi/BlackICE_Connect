@@ -176,6 +176,7 @@ int Get_AccesToken(struct client_data *clientData, struct token_response ** post
 	strcat(param, clientData->CLIENTID);
 	strcat(param, "&client_secret=");
 	strcat(param, clientData->password);
+	Write_Free_Text(url, LOG_CONTEXT);
 	struct request_data *requestData;
 	requestData = Store_HttpsData(url, param, NULL, FALSE_p);
 	free(url);
@@ -217,13 +218,18 @@ int Get_ListKeys(struct basic_http_data *petitionData, struct list_key **listKey
 		if (requestData == NULL) return ALLOCATE_ERROR;
 		result = Https_Request(requestData, &response, "GET");
 		if (result == UNAUTHORIZED) {	
+			Write_Free_Text("Get_ListKeys-UNAUTHORIZED", LOG_CONTEXT);
 			result = GetToken(&TOKEN);
 			if (result == OK) {
+				Write_Free_Text("Get_ListKeys-GetToken-OK", LOG_CONTEXT);
 				free(response);
 				response = NULL;
 				free(requestData->token);
 				requestData->token = _strdup(TOKEN);
 				result = Https_Request(requestData, &response, "GET");
+			}
+			else {
+				Write_Free_Text("Get_ListKeys-GetToken-Error", LOG_CONTEXT);
 			}
 		}
 		Free_HttpsData(requestData);

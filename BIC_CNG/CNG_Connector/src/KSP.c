@@ -158,6 +158,7 @@ KSPOpenProvider(
 	int resultado = ConfigureApplication();
 	InitializeLogs(LOG_CONTEXT);
 	context context;
+	MessageBoxA(NULL, "KSPOpenProvider", "KSP", MB_OK);
 	Context_Initialization("OpenProvider", &context);
 	Write_DebugData(context, LOG_CONTEXT);
 	SECURITY_STATUS		status = NTE_INTERNAL_ERROR;
@@ -190,21 +191,21 @@ KSPOpenProvider(
 		status = NTE_INVALID_PARAMETER;
 		goto cleanup;
 	}
-	if (strcmp(AUTH_METHOD, WINDOWS_AUTH) != 0)
-	{
-		char pin[MAXPINLEN * 2] = "";
-		status = AuthDisplay(g_hInstance, &pin);
-		if (ERROR_SUCCESS != status) {
-			status = NTE_INVALID_PARAMETER;
-			goto cleanup;
-		}
-		result = (NTSTATUS)DecryptAllConfigurationData(pin, strlen(pin));
-		ZeroMemory(pin, MAXPINLEN * 2);
-		status = NormalizeNteStatus(result);
-		if (ERROR_SUCCESS != status) {
-			goto cleanup;
-		}
-	}
+	//if (strcmp(AUTH_METHOD, WINDOWS_AUTH) != 0)
+	//{
+	//	char pin[MAXPINLEN * 2] = "";
+	//	status = AuthDisplay(g_hInstance, &pin);
+	//	if (ERROR_SUCCESS != status) {
+	//		status = NTE_INVALID_PARAMETER;
+	//		goto cleanup;
+	//	}
+	//	result = (NTSTATUS)DecryptAllConfigurationData(pin, strlen(pin));
+	//	ZeroMemory(pin, MAXPINLEN * 2);
+	//	status = NormalizeNteStatus(result);
+	//	if (ERROR_SUCCESS != status) {
+	//		goto cleanup;
+	//	}
+	//}
 	result = GetAccesToken((char **)&TOKEN);
 	status = NormalizeNteStatus(result);
 	if (ERROR_SUCCESS != status) {
