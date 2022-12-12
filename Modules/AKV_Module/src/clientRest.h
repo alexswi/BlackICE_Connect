@@ -13,7 +13,7 @@
 #ifndef CLIENTREST_H_INCLUDED
 #define CLIENTREST_H_INCLUDED
 
-#include <curl.h>
+#include <curl/curl.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>

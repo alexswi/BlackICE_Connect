@@ -68,7 +68,7 @@ ERROR_CODE IVCalculator(const unsigned char *iv, U_CHAR_PTR id, U_CHAR_PTR suffi
 }
 
 ERROR_CODE EncryptParameter(U_CHAR *parameter, U_CHAR **cipherData, const unsigned char *iv, U_CHAR *configurationKey) {
-	EVP_CIPHER_CTX *ctx;
+	EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
 	int len;
 	int ciphertext_len;
 
@@ -88,7 +88,7 @@ ERROR_CODE EncryptParameter(U_CHAR *parameter, U_CHAR **cipherData, const unsign
 	// The output buffer size needs to be bigger to accomodate incomplete blocks
 	// See EVP_EncryptUpdate documentation for explanation:
 	//https://www.openssl.org/docs/man1.0.2/crypto/EVP_EncryptUpdate.html
-	int cipher_block_size = EVP_CIPHER_block_size(ctx->cipher);
+	int cipher_block_size = EVP_CIPHER_block_size(ctx);
 	int outsize = strlen(parameter) + (cipher_block_size - 1);
 	unsigned char *ciphertext = malloc(outsize);
 	if (ciphertext == NULL) {
